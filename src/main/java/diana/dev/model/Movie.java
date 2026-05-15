@@ -1,4 +1,4 @@
-package diana.dev;
+package diana.dev.model;
 
 import jakarta.persistence.*;
 

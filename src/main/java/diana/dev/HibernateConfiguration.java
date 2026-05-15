@@ -1,5 +1,6 @@
 package diana.dev;
 
+import diana.dev.model.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,11 @@ public class HibernateConfiguration {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
 
         configuration
+                .addAnnotatedClass(Post.class)
+                .addAnnotatedClass(Group.class)
+                .addAnnotatedClass(UserProfile.class)
+                .addAnnotatedClass(Profile.class)
+                .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Movie.class)
                 .addPackage("diana.dev")

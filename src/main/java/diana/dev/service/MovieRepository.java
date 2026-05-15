@@ -1,4 +1,6 @@
-package diana.dev;
+package diana.dev.service;
+
+import diana.dev.model.Movie;
 
 import java.util.List;
 

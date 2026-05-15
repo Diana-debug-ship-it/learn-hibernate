@@ -1,4 +1,4 @@
-package diana.dev;
+package diana.dev.model;
 
 import jakarta.persistence.*;
 
@@ -12,8 +12,34 @@ public class Student {
 
     @Column(name="student_name", unique = true, nullable = false)
     private String name;
+
     @Column(name = "student_age")
     private Integer age;
+
+    @OneToOne(mappedBy = "student", cascade = CascadeType.REMOVE)
+    private Profile profile;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    public Student(String name, Integer age, Group group) {
+        this.name = name;
+        this.age = age;
+        this.group = group;
+    }
+
+    public Student() {
+    }
+
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -22,7 +48,6 @@ public class Student {
     public Long getId() {
         return this.id;
     }
-
 
     public String getName() {
         return this.name;
@@ -40,14 +65,14 @@ public class Student {
         this.age = age;
     }
 
-
-    public Student(String name, Integer age) {
-        this.name = name;
-        this.age = age;
+    public Group getGroup() {
+        return group;
     }
 
-    public Student() {
+    public void setGroup(Group group) {
+        this.group = group;
     }
+
 
     @Override
     public String toString() {

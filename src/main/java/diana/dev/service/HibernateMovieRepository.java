@@ -1,15 +1,16 @@
-package diana.dev;
+package diana.dev.service;
 
+import diana.dev.model.Movie;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class InMemoryMovieRepository implements MovieRepository{
+public class HibernateMovieRepository implements MovieRepository{
 
     private final SessionFactory factory;
 
-    public InMemoryMovieRepository(SessionFactory factory) {
+    public HibernateMovieRepository(SessionFactory factory) {
 
         this.factory = factory;
     }

@@ -1,6 +1,10 @@
 package diana.dev.model;
 
 import jakarta.persistence.*;
+import org.hibernate.mapping.Join;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="students")
@@ -23,6 +27,14 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Group group;
 
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
+    )
+    private List<Course> courseList = new ArrayList<>();
+
     public Student(String name, Integer age, Group group) {
         this.name = name;
         this.age = age;
@@ -35,6 +47,14 @@ public class Student {
 
     public Profile getProfile() {
         return profile;
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 
     public void setProfile(Profile profile) {

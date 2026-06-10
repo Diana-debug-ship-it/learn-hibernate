@@ -15,6 +15,7 @@ public class HibernateConfiguration {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
 
         configuration
+                .addAnnotatedClass((Course.class))
                 .addAnnotatedClass(Post.class)
                 .addAnnotatedClass(Group.class)
                 .addAnnotatedClass(UserProfile.class)
@@ -28,7 +29,7 @@ public class HibernateConfiguration {
                 .setProperty("hibernate.connection.username", "postgres")
                 .setProperty("hibernate.connection.password", "root")
                 .setProperty("hibernate.show_sql", "true")
-                .setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                .setProperty("hibernate.hbm2ddl.auto", "update");
 
         return configuration.buildSessionFactory();
     }
